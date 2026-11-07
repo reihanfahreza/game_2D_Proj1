@@ -1,0 +1,13 @@
+id,name,element,stage,baseHP,baseATK,baseDEF,baseSPD,evolvesTo,evolveLevel,strongAgainst,spriteFile,frameSize
+MON_001,Pyrit,Pyro,1,40,14,8,10,Pyrago,5,Sprout,Pyro_1_Pyrit_16x16.png,16
+MON_002,Pyrago,Pyro,2,72,25,14,18,Infernox,9,Sprout,Pyro_2_Pyrago_24x24.png,24
+MON_003,Infernox,Pyro,3,120,42,24,30,,,Sprout,Pyro_3_Infernox_32x32.png,32
+MON_004,Blubi,Aqua,1,48,10,12,8,Finnox,5,Pyro,Aqua_1_Blubi_16x16.png,16
+MON_005,Finnox,Aqua,2,86,18,21,14,Tidalord,9,Pyro,Aqua_2_Finnox_24x24.png,24
+MON_006,Tidalord,Aqua,3,144,30,36,24,,,Pyro,Aqua_3_Tidalord_32x32.png,32
+MON_007,Sprig,Sprout,1,52,9,11,7,Bloomlet,5,Aqua,Sprout_1_Sprig_16x16.png,16
+MON_008,Bloomlet,Sprout,2,93,16,19,12,Florazor,9,Aqua,Sprout_2_Bloomlet_24x24.png,24
+MON_009,Florazor,Sprout,3,156,27,33,21,,,Aqua,Sprout_3_Florazor_32x32.png,32
+MON_010,Zapi,Volt,1,38,12,7,14,Voltcat,5,Aqua,Volt_1_Zapi_16x16.png,16
+MON_011,Voltcat,Volt,2,68,21,12,25,Raijugar,9,Aqua,Volt_2_Voltcat_24x24.png,24
+MON_012,Raijugar,Volt,3,114,36,21,42,,,Aqua,Volt_3_Raijugar_32x32.png,32

@@ -229,7 +229,8 @@ public static partial class DemoBuilder
         Set(wild, "maxLevel", maxLevel);
         Set(wild, "isBoss", boss);
         Set(wild, "stationary", boss);
-        go.GetComponent<SpriteRenderer>().sprite = data.Frames[0];
+        // Lewat SerializedObject agar tercatat sebagai override prefab instance (assignment langsung tidak tersimpan)
+        Set(go.GetComponent<SpriteRenderer>(), "m_Sprite", data.Frames[0]);
         go.GetComponent<Animator>().runtimeAnimatorController = monsterAocs[species];
         if (boss)
         {

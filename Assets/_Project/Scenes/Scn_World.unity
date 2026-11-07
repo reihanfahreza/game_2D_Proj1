@@ -1864,6 +1864,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 6955321418916534307, guid: fa27702b2fb1bc44e94a7002fe1c9a20, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Bloomlet
@@ -17529,6 +17533,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -82409557241251320, guid: 6f69854feda156940950d2e673976859, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Finnox
@@ -18100,6 +18108,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3550268219214689552, guid: 81f2f91bf16b4ab4296c509a56832c4e, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Blubi
@@ -18170,6 +18182,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8755920683797037524, guid: 13302e7f28b51b04c85c842359423c1e, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Pyrago
@@ -25364,6 +25380,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 8634615812561038026, guid: 245905f91931f2648b0518193fee33ad, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Voltcat
@@ -25442,6 +25462,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3550268219214689552, guid: 81f2f91bf16b4ab4296c509a56832c4e, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Blubi_Danau
@@ -26268,6 +26292,10 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4809201893061458815, guid: 3afea4c4ed653f747a0653cfb93f0e9e, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Boss_Raijugar
@@ -26381,6 +26409,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 306181386679292275, guid: 25326e66d0f586d41bdd0d5c6a3fe64a, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Zapi
@@ -26486,6 +26518,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3024920959662468579, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7283860158897311374, guid: b0a992dbc6d3929469e4c2d9a293ceda, type: 3}
     - target: {fileID: 3343636808934079686, guid: f785db4952481f348afebd2b4dfc756f, type: 3}
       propertyPath: m_Name
       value: Wild_Sprig

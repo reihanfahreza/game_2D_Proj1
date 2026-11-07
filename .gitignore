@@ -42,3 +42,6 @@ sysinfo.txt
 crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Folder kosong yang dibuat paket test-framework.performance setiap build
+/[Aa]ssets/[Rr]esources.meta

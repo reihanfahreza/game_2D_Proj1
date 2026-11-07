@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7782337717567361703
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Name
+      value: Pfb_Npc_Guard
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904455288065731800, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2558671177114619053, guid: ee598e6c0b773c640aa6a79c74eb09d1, type: 3}
+    - target: {fileID: 8463425360944740764, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 37f62cf5baaae184486d358336234bae, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5295446088840558169}
+  m_SourcePrefab: {fileID: 100100000, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+--- !u!95 &1834172783070718779 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8463425360944740764, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 7782337717567361703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6498416696799772287 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3904455288065731800, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 7782337717567361703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8388760365637786462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 7782337717567361703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5295446088840558169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8388760365637786462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a68c7b997b155e4d8360def3fbcafaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GuardNpc
+  npcName: Penjaga Batas
+  body: {fileID: 6498416696799772287}
+  faceDown: {fileID: -2558671177114619053, guid: ee598e6c0b773c640aa6a79c74eb09d1, type: 3}
+  faceLeft: {fileID: 5811429871203033054, guid: ee598e6c0b773c640aa6a79c74eb09d1, type: 3}
+  faceRight: {fileID: -2267110483006603577, guid: ee598e6c0b773c640aa6a79c74eb09d1, type: 3}
+  faceUp: {fileID: -3054188975437900916, guid: ee598e6c0b773c640aa6a79c74eb09d1, type: 3}
+  animator: {fileID: 1834172783070718779}
+  dialogue: {fileID: 0}
+  asidePosition: {x: 22.5, y: 10.4}

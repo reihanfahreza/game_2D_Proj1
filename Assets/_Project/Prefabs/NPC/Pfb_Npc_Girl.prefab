@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6364409121700126436
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Name
+      value: Pfb_Npc_Girl
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904455288065731800, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5339384341012602559, guid: 7e1feb993d3a93a47aca0a05b573b88d, type: 3}
+    - target: {fileID: 8463425360944740764, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: eb6d5145da5b0ad45b6b8b6e4b576706, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1835382551927706733}
+  m_SourcePrefab: {fileID: 100100000, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+--- !u!95 &3253513069138388856 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8463425360944740764, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 6364409121700126436}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4627549294415337245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 6364409121700126436}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1835382551927706733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627549294415337245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f83123d9b01503641a4a1e80f66064e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SariNpc
+  npcName: Sari
+  body: {fileID: 7961665975445402172}
+  faceDown: {fileID: -5339384341012602559, guid: 7e1feb993d3a93a47aca0a05b573b88d, type: 3}
+  faceLeft: {fileID: 3001774950986503798, guid: 7e1feb993d3a93a47aca0a05b573b88d, type: 3}
+  faceRight: {fileID: -2836052450988231513, guid: 7e1feb993d3a93a47aca0a05b573b88d, type: 3}
+  faceUp: {fileID: 5369644166850814546, guid: 7e1feb993d3a93a47aca0a05b573b88d, type: 3}
+  animator: {fileID: 3253513069138388856}
+  dialogue: {fileID: 11400000, guid: 3056f15b21232e44aa1478bd2032ca41, type: 2}
+--- !u!212 &7961665975445402172 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3904455288065731800, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 6364409121700126436}
+  m_PrefabAsset: {fileID: 0}

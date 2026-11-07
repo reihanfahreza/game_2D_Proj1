@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6116065661066685749
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Name
+      value: Pfb_Npc_Merchant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504699433784153284, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3904455288065731800, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2700042031433159083, guid: b6205bda2cd1bd5479dd55f1c389032f, type: 3}
+    - target: {fileID: 8463425360944740764, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 702647b554768194ea5bffcb06ea696b, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7680694754000438215}
+  m_SourcePrefab: {fileID: 100100000, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+--- !u!95 &2419701656749642921 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8463425360944740764, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 6116065661066685749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5515245574226797772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1759420848177760761, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 6116065661066685749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7680694754000438215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5515245574226797772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ebab56bb76a704397424966fc50296, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MerchantNpc
+  npcName: Pak Dagang
+  body: {fileID: 7120129668679041517}
+  faceDown: {fileID: 2700042031433159083, guid: b6205bda2cd1bd5479dd55f1c389032f, type: 3}
+  faceLeft: {fileID: 1958943900099417703, guid: b6205bda2cd1bd5479dd55f1c389032f, type: 3}
+  faceRight: {fileID: 8136761100962439019, guid: b6205bda2cd1bd5479dd55f1c389032f, type: 3}
+  faceUp: {fileID: -290154630455276140, guid: b6205bda2cd1bd5479dd55f1c389032f, type: 3}
+  animator: {fileID: 2419701656749642921}
+  dialogue: {fileID: 0}
+  giftPotions: 3
+  giftClip: {fileID: 8300000, guid: a11324a27a975ac46b4662f1c94f3392, type: 3}
+--- !u!212 &7120129668679041517 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3904455288065731800, guid: 240e5a9bc5db2844db923dae600b7e43, type: 3}
+  m_PrefabInstance: {fileID: 6116065661066685749}
+  m_PrefabAsset: {fileID: 0}

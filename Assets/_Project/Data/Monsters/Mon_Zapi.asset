@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b435c6b281f9704e8988b48ec837bb7, type: 3}
+  m_Name: Mon_Zapi
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterData
+  id: MON_010
+  displayName: Zapi
+  element: 3
+  stage: 1
+  frames:
+  - {fileID: 306181386679292275, guid: 25326e66d0f586d41bdd0d5c6a3fe64a, type: 3}
+  - {fileID: -2155714682058758792, guid: 25326e66d0f586d41bdd0d5c6a3fe64a, type: 3}
+  - {fileID: 4825513497617621001, guid: 25326e66d0f586d41bdd0d5c6a3fe64a, type: 3}
+  - {fileID: 6648961527950131304, guid: 25326e66d0f586d41bdd0d5c6a3fe64a, type: 3}
+  baseHP: 38
+  baseATK: 12
+  baseDEF: 7
+  baseSPD: 14
+  skillName: Setrum Kilat
+  evolvesTo: {fileID: 11400000, guid: 88682633c9d142a42b29f8d60e7f4dbf, type: 2}
+  evolveLevel: 5
+  idleController: {fileID: 22100000, guid: cd81a05735654a847b2b97f16c6a1de4, type: 2}

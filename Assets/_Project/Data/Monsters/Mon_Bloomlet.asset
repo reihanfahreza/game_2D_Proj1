@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b435c6b281f9704e8988b48ec837bb7, type: 3}
+  m_Name: Mon_Bloomlet
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterData
+  id: MON_008
+  displayName: Bloomlet
+  element: 2
+  stage: 2
+  frames:
+  - {fileID: 6955321418916534307, guid: fa27702b2fb1bc44e94a7002fe1c9a20, type: 3}
+  - {fileID: -8243668992453361424, guid: fa27702b2fb1bc44e94a7002fe1c9a20, type: 3}
+  - {fileID: 7787965359253415463, guid: fa27702b2fb1bc44e94a7002fe1c9a20, type: 3}
+  - {fileID: 5695320654656185471, guid: fa27702b2fb1bc44e94a7002fe1c9a20, type: 3}
+  baseHP: 93
+  baseATK: 16
+  baseDEF: 19
+  baseSPD: 12
+  skillName: Daun Tajam
+  evolvesTo: {fileID: 11400000, guid: 9c47ff73d28347c43bed28d7a7e6fade, type: 2}
+  evolveLevel: 9
+  idleController: {fileID: 22100000, guid: 429cf892db4326e44bce41bb4b45f338, type: 2}

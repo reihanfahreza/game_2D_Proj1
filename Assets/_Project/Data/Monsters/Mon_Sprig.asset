@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b435c6b281f9704e8988b48ec837bb7, type: 3}
+  m_Name: Mon_Sprig
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterData
+  id: MON_007
+  displayName: Sprig
+  element: 2
+  stage: 1
+  frames:
+  - {fileID: -7283860158897311374, guid: b0a992dbc6d3929469e4c2d9a293ceda, type: 3}
+  - {fileID: -6985323381613182270, guid: b0a992dbc6d3929469e4c2d9a293ceda, type: 3}
+  - {fileID: -5149643011442016566, guid: b0a992dbc6d3929469e4c2d9a293ceda, type: 3}
+  - {fileID: 5098394551154596141, guid: b0a992dbc6d3929469e4c2d9a293ceda, type: 3}
+  baseHP: 52
+  baseATK: 9
+  baseDEF: 11
+  baseSPD: 7
+  skillName: Daun Tajam
+  evolvesTo: {fileID: 11400000, guid: e30b392b09f67dc4189ada4593d8ae9e, type: 2}
+  evolveLevel: 5
+  idleController: {fileID: 22100000, guid: abdeb86a77f25744fbd3fcacacd69081, type: 2}

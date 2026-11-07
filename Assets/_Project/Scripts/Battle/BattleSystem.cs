@@ -179,19 +179,28 @@ public class BattleSystem : MonoBehaviour
         int exp = (10 + Enemy.Level * 8) * (IsBoss ? 2 : 1);
         yield return Say($"{Player.Data.DisplayName} mendapat {exp} EXP.", 0.9f);
 
-        foreach (GrowthEvent growth in Player.GainExp(exp))
+        // EXP diberikan per satu level. GainExp langsung mengubah Level/HP/Data, jadi kalau semua EXP
+        // diberikan sekaligus, HUD sudah memakai nilai akhir (mis. Lv 7) sementara pesan masih di
+        // "naik ke Lv 5" - level di HUD terlihat melompat lalu mundur (5 -> 7 -> 6 -> 7).
+        int left = exp;
+        while (left > 0)
         {
-            if (growth.Type == GrowthType.LevelUp)
+            int step = Mathf.Min(left, Mathf.Max(1, Player.ExpToNext - Player.Exp));
+            left -= step;
+            foreach (GrowthEvent growth in Player.GainExp(step))
             {
-                LevelUp?.Invoke(growth.From, growth.Level);
-                yield return Say(growth.Message, 0.9f);
-                continue;
+                if (growth.Type == GrowthType.LevelUp)
+                {
+                    LevelUp?.Invoke(growth.From, growth.Level);
+                    yield return Say(growth.Message, 0.9f);
+                    continue;
+                }
+                yield return Say($"Apa? {growth.From.DisplayName} mulai bersinar...", 0.9f);
+                Evolving?.Invoke(growth.From, growth.To);             // animasi 2,4 detik
+                yield return new WaitForSeconds(evolveSeconds);
+                Evolved?.Invoke(Player);                              // kilat putih + sprite baru
+                yield return Say(growth.Message, 1.2f);               // "Pyrit berevolusi menjadi Pyrago!"
             }
-            yield return Say($"Apa? {growth.From.DisplayName} mulai bersinar...", 0.9f);
-            Evolving?.Invoke(growth.From, growth.To);                 // animasi 2,4 detik
-            yield return new WaitForSeconds(evolveSeconds);
-            Evolved?.Invoke(Player);                                  // kilat putih + sprite baru
-            yield return Say(growth.Message, 1.2f);                   // "Pyrit berevolusi menjadi Pyrago!"
         }
 
         if (!IsBoss)

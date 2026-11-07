@@ -17,13 +17,14 @@ using UnityEngine.UI;
 /// <summary>
 /// Perekam video demo (alat bantu). Hanya aktif bila game dijalankan dengan argumen -recordvideo:
 ///   PulauMonster.exe -recordvideo -screen-width 1280 -screen-height 720 -screen-fullscreen 0
-/// Memainkan alur demo dengan input keyboard tiruan dan merekam potongan-potongan pentingnya:
-/// frame JPG + audio WAV + daftar durasi (frames.txt) di persistentDataPath/video, untuk dirangkai ffmpeg.
-/// Selama merekam, label nama &amp; NIM tampil di atas layar.
+/// Memainkan alur demo dengan input keyboard tiruan dan merekam potongan-potongan pentingnya dengan
+/// tempo santai (setiap pesan ditunggu sampai selesai dibaca): frame JPG + audio WAV + daftar durasi
+/// (frames.txt) di persistentDataPath/video, untuk dirangkai ffmpeg. Label nama &amp; NIM tampil di atas layar.
 /// </summary>
 public class DemoVideoRecorder : MonoBehaviour
 {
     private const string Watermark = "M Reihan Fahreza\nNIM 4352511014";
+    private const float CharsPerSecond = 55f;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
     private static void Boot()
@@ -57,6 +58,8 @@ public class DemoVideoRecorder : MonoBehaviour
     private double pendingFrameTime;
     private string lastFrame;
     private float startTime;
+    private string battleMessage;
+    private float battleMessageAt;
 
     void Start()
     {
@@ -85,10 +88,10 @@ public class DemoVideoRecorder : MonoBehaviour
 
     void Update()
     {
-        // pengaman: jangan pernah berjalan lebih dari 5 menit
-        if (!finishing && Time.realtimeSinceStartup - startTime > 300f)
+        // pengaman: jangan pernah berjalan lebih dari 6 menit
+        if (!finishing && Time.realtimeSinceStartup - startTime > 360f)
         {
-            Note("GAGAL  batas waktu 5 menit");
+            Note("GAGAL  batas waktu 6 menit");
             StartCoroutine(Finish());
         }
     }
@@ -104,9 +107,9 @@ public class DemoVideoRecorder : MonoBehaviour
 
         // 1. Layar judul -> Mulai baru
         BeginSegment("judul");
-        yield return new WaitForSecondsRealtime(1.9f);
+        yield return new WaitForSecondsRealtime(2.6f);
         yield return Tap(Key.Enter);
-        yield return new WaitForSecondsRealtime(0.35f);
+        yield return new WaitForSecondsRealtime(0.7f);
         EndSegment();
 
         // narasi pembuka (tidak direkam)
@@ -119,29 +122,32 @@ public class DemoVideoRecorder : MonoBehaviour
         PlayerMovement player = world.Player;
         PlayerInteractor interactor = player.GetComponent<PlayerInteractor>();
 
-        // 2a. Lari ke Tetua Rahmat lalu bicara
+        // 2a. Lari ke Tetua Rahmat lalu bicara (baris pertama dibaca sampai selesai)
         BeginSegment("ke-tetua");
+        yield return new WaitForSecondsRealtime(0.4f);
         yield return HoldUntil(() => player.transform.position.x >= 25.3f, 3f, Key.LeftShift, Key.D);
         yield return Hold(0.25f, Key.W);
         yield return Tap(Key.E);
         yield return new WaitForSecondsRealtime(0.2f);
         if (!s.Dialogue.IsRunning) FindAnyObjectByType<StarterGiver>().Interact(interactor);
-        yield return new WaitForSecondsRealtime(0.45f);
+        yield return WaitDialogueTyped(s);
+        yield return new WaitForSecondsRealtime(0.9f);
         EndSegment();
 
-        // dua baris pertama Tetua (tidak direkam)
-        yield return AdvanceUntil(s, () => s.Dialogue.ChoicesOpen, 15f);
+        // baris kedua Tetua (tidak direkam)
+        yield return AdvanceUntil(() => s.Dialogue.ChoicesOpen, 15f);
 
         // 2b. Pilih partner -> Yakin? -> dapat Pyrit
         BeginSegment("pilih-partner");
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(1.4f);
         yield return Tap(Key.Enter);                                   // Pyrit (Pyro)
         yield return WaitFor(() => !s.Dialogue.ChoicesOpen, 2f, "pilihan ditutup");
         yield return WaitFor(() => s.Dialogue.ChoicesOpen, 5f, "pertanyaan Yakin?");
-        yield return new WaitForSecondsRealtime(0.7f);
+        yield return new WaitForSecondsRealtime(1.1f);
         yield return Tap(Key.Enter);                                   // Ya
         yield return WaitFor(() => s.Dialogue.CurrentText.Contains("mendapat"), 5f, "Kamu mendapat Pyrit");
-        yield return new WaitForSecondsRealtime(1.1f);
+        yield return WaitDialogueTyped(s);
+        yield return new WaitForSecondsRealtime(1.5f);
         EndSegment();
 
         // sisa dialog Tetua (tidak direkam)
@@ -152,12 +158,14 @@ public class DemoVideoRecorder : MonoBehaviour
 
         // 3. Lewat celah pagar ke Hutan Rimbun
         BeginSegment("hutan");
+        yield return new WaitForSecondsRealtime(0.3f);
         yield return HoldUntil(() => player.transform.position.x <= 20.15f, 3f, Key.LeftShift, Key.A);
         yield return HoldUntil(() => player.transform.position.y >= 14.5f, 3f, Key.LeftShift, Key.W);
-        yield return Hold(0.55f, Key.LeftShift, Key.A);
+        yield return Hold(0.7f, Key.LeftShift, Key.A);
+        yield return new WaitForSecondsRealtime(0.3f);
         EndSegment();
 
-        // 4. Battle melawan Sprig Lv 2 (dua Jurus cukup)
+        // 4. Battle melawan Sprig Lv 2 (dua Jurus cukup), tempo santai
         WildMonster sprig = FindObjectsByType<WildMonster>(FindObjectsSortMode.None)
             .FirstOrDefault(w => !w.IsBoss && w.Species.DisplayName == "Sprig");
         if (sprig == null) { Note("GAGAL  Sprig tidak ada"); yield return Finish(); yield break; }
@@ -168,28 +176,29 @@ public class DemoVideoRecorder : MonoBehaviour
         sprig.StartEncounter();
         yield return WaitFor(() => s.Scenes.InBattle, 6f, "battle dimulai");
         BattleInstaller battle = FindAnyObjectByType<BattleInstaller>();
+        WatchBattle(battle);
         BeginSegment("battle");
-        yield return SkipMessagesUntil(battle, () => battle.Battle.AwaitingChoice && battle.View.Menu.IsOpen, 12f, 0.4f, false);
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return ReadBattleUntil(battle, () => MenuOpen(battle), 15f, false);
+        yield return new WaitForSecondsRealtime(1.1f);                 // menu terlihat dulu
         yield return Tap(Key.RightArrow);                              // Jurus
-        yield return new WaitForSecondsRealtime(0.3f);
+        yield return new WaitForSecondsRealtime(0.55f);
         yield return Tap(Key.Enter);
-        yield return SkipMessagesUntil(battle,
-            () => (battle.Battle.AwaitingChoice && battle.View.Menu.IsOpen) || battle.Battle.Result != BattleResult.None, 15f, 0.45f, false);
+        yield return ReadBattleUntil(battle, () => MenuOpen(battle) || battle.Battle.Result != BattleResult.None, 20f, false);
         if (battle.Battle.Result == BattleResult.None)
         {
-            yield return new WaitForSecondsRealtime(0.35f);
+            yield return new WaitForSecondsRealtime(0.9f);
             yield return Tap(Key.Enter);                               // Jurus lagi (pilihan terakhir diingat)
         }
-        yield return SkipMessagesUntil(battle, () => MessageContains(battle, "naik ke Lv"), 15f, 0.45f);
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return ReadBattleUntil(battle, () => MessageContains(battle, "naik ke Lv"), 25f, true);
+        yield return WaitBattleTyped();
+        yield return new WaitForSecondsRealtime(1.6f);
         EndSegment();
 
         // sisa pesan battle (tidak direkam)
-        yield return SkipMessagesUntil(battle, () => !s.Scenes.InBattle, 15f, 0.35f);
+        yield return SkipMessagesUntil(battle, () => !s.Scenes.InBattle, 20f, 0.35f);
         yield return WaitFor(() => !s.Scenes.InBattle && !s.Scenes.IsBusy, 15f, "kembali ke dunia");
 
-        // 5. Gua Petir yang gelap -> Raijugar mengaum
+        // 5. Gua Petir yang gelap -> Raijugar mengaum (dua baris)
         CalmAll(40f);
         WildMonster boss = FindObjectsByType<WildMonster>(FindObjectsSortMode.None).FirstOrDefault(w => w.IsBoss);
         if (boss == null) { Note("GAGAL  Raijugar tidak ada"); yield return Finish(); yield break; }
@@ -198,38 +207,50 @@ public class DemoVideoRecorder : MonoBehaviour
         yield return new WaitForSecondsRealtime(1.6f);
         yield return WaitFor(() => !s.Battle.IsSafe, 5f, "waktu aman habis");
         BeginSegment("gua");
-        yield return HoldUntil(() => s.Dialogue.IsRunning, 4f, Key.W);
-        yield return new WaitForSecondsRealtime(1.3f);
-        EndSegment();
-
-        // auman + battle boss (tidak direkam): HP boss dibuat 0 agar demo singkat
-        while (s.Dialogue.IsRunning) { yield return Tap(Key.Enter); yield return new WaitForSecondsRealtime(0.25f); }
-        yield return WaitFor(() => s.Scenes.InBattle && FindAnyObjectByType<BattleInstaller>() != null, 8f, "battle boss");
-        battle = FindAnyObjectByType<BattleInstaller>();
-        yield return SkipMessagesUntil(battle, () => battle.Battle.AwaitingChoice && battle.View.Menu.IsOpen, 12f, 0.3f, false);
-        battle.Battle.Enemy.TakeDamage(battle.Battle.Enemy.CurrentHP);
-        yield return new WaitForSecondsRealtime(0.2f);
-        yield return Tap(Key.Enter);                                   // Serang
-
-        // 6. Evolusi Pyrit -> Pyrago
-        yield return SkipMessagesUntil(battle, () => MessageContains(battle, "mulai bersinar"), 25f, 0.3f);
-        BeginSegment("evolusi");
-        yield return new WaitForSecondsRealtime(0.7f);
+        yield return new WaitForSecondsRealtime(0.5f);
+        yield return HoldUntil(() => s.Dialogue.IsRunning, 5f, Key.W);
+        yield return WaitDialogueTyped(s);
+        yield return new WaitForSecondsRealtime(1.0f);
         yield return Tap(Key.Enter);
-        yield return WaitFor(() => MessageContains(battle, "berevolusi menjadi"), 6f, "evolusi selesai");
+        yield return new WaitForSecondsRealtime(0.3f);
+        yield return WaitDialogueTyped(s);
         yield return new WaitForSecondsRealtime(1.0f);
         EndSegment();
 
-        // ending (tidak direkam)
+        // battle boss (tidak direkam): HP boss dibuat 0 agar demo singkat
+        while (s.Dialogue.IsRunning) { yield return Tap(Key.Enter); yield return new WaitForSecondsRealtime(0.25f); }
+        yield return WaitFor(() => s.Scenes.InBattle && FindAnyObjectByType<BattleInstaller>() != null, 8f, "battle boss");
+        battle = FindAnyObjectByType<BattleInstaller>();
+        WatchBattle(battle);
+        yield return SkipMessagesUntil(battle, () => MenuOpen(battle), 12f, 0.3f, false);
+        battle.Battle.Enemy.TakeDamage(battle.Battle.Enemy.CurrentHP);
+        yield return new WaitForSecondsRealtime(0.2f);
+        yield return Tap(Key.Enter);                                   // Serang
+        yield return SkipMessagesUntil(battle, () => MessageContains(battle, "mulai bersinar"), 25f, 0.3f);
+
+        // 6. Evolusi Pyrit -> Pyrago
+        BeginSegment("evolusi");
+        yield return WaitBattleTyped();
+        yield return new WaitForSecondsRealtime(0.6f);
+        yield return Tap(Key.Enter);
+        yield return WaitFor(() => MessageContains(battle, "berevolusi menjadi"), 6f, "evolusi selesai");
+        yield return WaitBattleTyped();
+        yield return new WaitForSecondsRealtime(1.5f);
+        EndSegment();
+
+        // 7. Narasi ending
         yield return SkipMessagesUntil(battle, () => !s.Scenes.InBattle, 25f, 0.3f);
         yield return WaitFor(() => s.Dialogue.IsRunning, 15f, "narasi ending");
+        BeginSegment("ending");
+        yield return WaitDialogueTyped(s);
+        yield return new WaitForSecondsRealtime(1.2f);
+        EndSegment();
         while (s.Dialogue.IsRunning) { yield return Tap(Key.Enter); yield return new WaitForSecondsRealtime(0.3f); }
-        yield return WaitFor(() => s.Scenes.Current == SceneFlow.EndScene && !s.Scenes.IsBusy, 15f, "layar DEMO SELESAI");
-        yield return new WaitForSecondsRealtime(0.3f);
 
-        // 7. DEMO SELESAI
+        // 8. DEMO SELESAI (ikut merekam fade-in)
+        yield return WaitFor(() => s.Scenes.Current == SceneFlow.EndScene, 15f, "layar DEMO SELESAI");
         BeginSegment("demo-selesai");
-        yield return new WaitForSecondsRealtime(2.4f);
+        yield return new WaitForSecondsRealtime(3.6f);
         EndSegment();
 
         yield return Finish();
@@ -265,25 +286,93 @@ public class DemoVideoRecorder : MonoBehaviour
     {
         SetKeys(keys);
         float end = Time.realtimeSinceStartup + timeout;
-        while (!done() && Time.realtimeSinceStartup < end) yield return null;
+        while (!Safe(done) && Time.realtimeSinceStartup < end) yield return null;
         SetKeys();
         yield return null;
     }
 
-    private IEnumerator AdvanceUntil(GameServices s, Func<bool> done, float timeout)
+    private IEnumerator AdvanceUntil(Func<bool> done, float timeout)
     {
         float end = Time.realtimeSinceStartup + timeout;
-        while (!done() && Time.realtimeSinceStartup < end)
+        while (!Safe(done) && Time.realtimeSinceStartup < end)
         {
             yield return Tap(Key.Enter);
             yield return new WaitForSecondsRealtime(0.3f);
         }
     }
 
+    /// <summary>Tunggu baris dialog selesai diketik (teks berhenti bertambah).</summary>
+    private IEnumerator WaitDialogueTyped(GameServices s)
+    {
+        string last = null;
+        float stableSince = Time.realtimeSinceStartup;
+        float end = Time.realtimeSinceStartup + 6f;
+        while (Time.realtimeSinceStartup < end)
+        {
+            string now = s.Dialogue.CurrentText;
+            if (now != last) { last = now; stableSince = Time.realtimeSinceStartup; }
+            else if (!string.IsNullOrEmpty(now) && Time.realtimeSinceStartup - stableSince > 0.15f) yield break;
+            yield return null;
+        }
+    }
+
+    private void WatchBattle(BattleInstaller battle)
+    {
+        battleMessage = null;
+        battle.Battle.MessageShown += message =>
+        {
+            battleMessage = message;
+            battleMessageAt = Time.realtimeSinceStartup;
+        };
+    }
+
+    private IEnumerator WaitBattleTyped()
+    {
+        if (battleMessage == null) yield break;
+        float typed = battleMessageAt + battleMessage.Length / CharsPerSecond + 0.05f;
+        while (Time.realtimeSinceStartup < typed) yield return null;
+    }
+
+    private static bool MenuOpen(BattleInstaller battle) => battle.Battle.AwaitingChoice && battle.View.Menu.IsOpen;
+
     /// <summary>
-    /// Tekan Enter berkala untuk mempercepat pesan battle. Saat menu aksi terbuka: diam (fight = false)
-    /// atau pilih aksi terakhir (fight = true), misalnya bila serangan meleset dan battle berlanjut.
+    /// Tempo santai: Enter ditekan hanya setelah pesan battle selesai diketik + jeda baca.
+    /// fight = true: bila menu aksi terbuka lebih dari 1 detik, pilih aksi terakhir (mis. serangan meleset).
     /// </summary>
+    private IEnumerator ReadBattleUntil(BattleInstaller battle, Func<bool> done, float timeout, bool fight, float read = 0.65f)
+    {
+        float end = Time.realtimeSinceStartup + timeout;
+        float menuSince = -1f;
+        while (Time.realtimeSinceStartup < end)
+        {
+            if (Safe(done)) yield break;
+            float now = Time.realtimeSinceStartup;
+            if (battle.Battle.AwaitingChoice)
+            {
+                if (menuSince < 0f) menuSince = now;
+                if (fight && battle.View.Menu.IsOpen && now - menuSince > 1.0f)
+                {
+                    menuSince = -1f;
+                    yield return Tap(Key.Enter);
+                    continue;
+                }
+            }
+            else
+            {
+                menuSince = -1f;
+                if (battleMessage != null && now >= battleMessageAt + battleMessage.Length / CharsPerSecond + read)
+                {
+                    battleMessage = null;
+                    yield return Tap(Key.Enter);
+                    continue;
+                }
+            }
+            yield return null;
+        }
+        Note("timeout menunggu pesan battle (santai)");
+    }
+
+    /// <summary>Versi cepat untuk bagian yang tidak direkam.</summary>
     private IEnumerator SkipMessagesUntil(BattleInstaller battle, Func<bool> done, float timeout, float interval, bool fight = true)
     {
         float end = Time.realtimeSinceStartup + timeout;
@@ -362,7 +451,7 @@ public class DemoVideoRecorder : MonoBehaviour
             if (tap.samples.Count > target) tap.samples.RemoveRange(target, tap.samples.Count - target);
             while (tap.samples.Count < target) tap.samples.Add(0f);
         }
-        Note($"segmen {segmentName}: {videoTime - segmentVideoStart:F2} s (total {videoTime:F2} s)");
+        Note($"segmen {segmentName}: {segmentVideoStart:F2} -> {videoTime:F2} ({videoTime - segmentVideoStart:F2} s)");
     }
 
     private IEnumerator CaptureLoop()

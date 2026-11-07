@@ -197,6 +197,7 @@ Scene List build: 0 Bootstrap · 1 Title · 2 World · 3 Battle · 4 End.
 - **Pulau Monster → Rakit Ulang Semua** membuat ulang tile, animasi, data monster, prefab, dan semua scene dari Starter Asset Pack (`DemoBuilder`).
 - **Pulau Monster → Render Peta untuk README** membuat `Docs/peta.png`.
 - `PulauMonster.exe -autopilot` memainkan alur demo secara otomatis, lalu menyimpan screenshot dan `report.txt` di `AppData/LocalLow/Politeknik Negeri Batam/Pulau Monster/autopilot`.
+- `PulauMonster.exe -recordvideo` memainkan dan merekam potongan demo (frame JPG + audio WAV) ke folder `video` di lokasi yang sama, untuk dirangkai menjadi video demo dengan ffmpeg.
 - Di Editor atau Development Build, saat battle: `F1` membuat HP lawan tinggal 1, `F2` membuat HP partner tinggal 1.
 
 </details>
